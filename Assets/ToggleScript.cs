@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToggleScript : MonoBehaviour
 {
-    public GameObject cubeObj;
-    Animator cubeToggle;
+    public GameObject boolCubeObj;
+    public GameObject floatCubeObj;
+    public GameObject triggerCubeObj;
 
-    bool cubeBool;
+    Animator boolCubeToggle;
+    Animator floatLightToggle;
+
+    public bool cubeBool;
+    public float cubeFloat;
 
     // Start is called before the first frame update
     void Start()
     {
-        cubeToggle = cubeObj.GetComponent<Animator>();
+        boolCubeToggle = boolCubeObj.GetComponent<Animator>();
 
         cubeBool = false;
     }
@@ -20,23 +26,66 @@ public class ToggleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cubeToggle.GetBool("Rotate") == false && Input.GetKeyDown(KeyCode.Tab))
+        TriggerUpdate();
+
+        FloatUpdate();
+
+        BoolUpdate();
+    }
+
+    public void TriggerUpdate()
+    {
+
+    }
+
+
+
+    public void FloatUpdate()
+    {
+        cubeFloat += Input.mouseScrollDelta.y;
+
+        if (cubeFloat <= -5)
+        {
+            cubeFloat = -5;
+        }
+
+        if (cubeFloat >= 5)
+        {
+            cubeFloat = 5;
+        }
+
+        if (cubeFloat <= -2 && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Debug.Log("Cube is now Yellow!");
+        }
+        else if (cubeFloat >= -1 && cubeFloat <= 1 && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Debug.Log("Cube is now Green!");
+        }
+        else if (cubeFloat >= 2 && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Debug.Log("Cube is now Blue!");
+        }
+    }
+    public void BoolUpdate()
+    {
+        if (boolCubeToggle.GetBool("Rotate") == false && Input.GetKeyDown(KeyCode.Tab))
         {
             cubeBool = true;
         }
 
-        if (cubeToggle.GetBool("Rotate") == true && Input.GetKeyDown(KeyCode.Tab))
+        if (boolCubeToggle.GetBool("Rotate") == true && Input.GetKeyDown(KeyCode.Tab))
         {
             cubeBool = false;
         }
 
         if (cubeBool == true)
         {
-            cubeToggle.SetBool("Rotate", true);
+            boolCubeToggle.SetBool("Rotate", true);
         }
         else
         {
-            cubeToggle.SetBool("Rotate", false);
+            boolCubeToggle.SetBool("Rotate", false);
         }
     }
 }
