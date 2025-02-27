@@ -409,6 +409,9 @@ MonoBehaviour:
   boolCubeObj: {fileID: 1805136095}
   floatCubeObj: {fileID: 1459678603}
   triggerCubeObj: {fileID: 642212105}
+  BlueLightObj: {fileID: 766635989}
+  GreenLightObj: {fileID: 1927318693}
+  YellowLightObj: {fileID: 1788478970}
   cubeBool: 0
   cubeFloat: 0
 --- !u!4 &629415868

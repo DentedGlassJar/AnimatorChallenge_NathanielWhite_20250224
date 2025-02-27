@@ -9,6 +9,10 @@ public class ToggleScript : MonoBehaviour
     public GameObject floatCubeObj;
     public GameObject triggerCubeObj;
 
+    public GameObject BlueLightObj;
+    public GameObject GreenLightObj;
+    public GameObject YellowLightObj;
+
     Animator boolCubeToggle;
     Animator floatLightToggle;
 
@@ -57,14 +61,26 @@ public class ToggleScript : MonoBehaviour
         if (cubeFloat <= -2 && Input.GetKeyDown(KeyCode.LeftShift))
         {
             Debug.Log("Cube is now Yellow!");
+
+            BlueLightObj.SetActive(false);
+            YellowLightObj.SetActive(false);
+            GreenLightObj.SetActive(true);
         }
         else if (cubeFloat >= -1 && cubeFloat <= 1 && Input.GetKeyDown(KeyCode.LeftShift))
         {
             Debug.Log("Cube is now Green!");
+
+            BlueLightObj.SetActive(false);
+            YellowLightObj.SetActive(true);
+            GreenLightObj.SetActive(false);
         }
         else if (cubeFloat >= 2 && Input.GetKeyDown(KeyCode.LeftShift))
         {
             Debug.Log("Cube is now Blue!");
+
+            BlueLightObj.SetActive(true);
+            YellowLightObj.SetActive(false);
+            GreenLightObj.SetActive(false);
         }
     }
     public void BoolUpdate()
