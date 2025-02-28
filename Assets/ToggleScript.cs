@@ -16,8 +16,6 @@ public class ToggleScript : MonoBehaviour
     public bool cubeBool;
     public float cubeFloat;
 
-    private bool isSpacePressed;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +26,6 @@ public class ToggleScript : MonoBehaviour
         triggerDoorToggle = triggerDoorObj.GetComponent<Animator>();
 
         cubeBool = false;
-
-        isSpacePressed = false;
     }
 
     // Update is called once per frame
