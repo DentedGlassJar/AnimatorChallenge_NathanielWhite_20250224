@@ -6,23 +6,30 @@ using UnityEngine.UI;
 public class ToggleScript : MonoBehaviour
 {
     public GameObject boolCubeObj;
-    public GameObject triggerCubeObj;
-    public GameObject pointLight;
+    public GameObject pointLightObj;
+    public GameObject triggerDoorObj;
 
     Animator boolCubeToggle;
     Animator floatLightToggle;
+    Animator triggerDoorToggle;
 
     public bool cubeBool;
     public float cubeFloat;
+
+    private bool isSpacePressed;
 
     // Start is called before the first frame update
     void Start()
     {
         boolCubeToggle = boolCubeObj.GetComponent<Animator>();
 
-        floatLightToggle = pointLight.GetComponent<Animator>();
+        floatLightToggle = pointLightObj.GetComponent<Animator>();
+
+        triggerDoorToggle = triggerDoorObj.GetComponent<Animator>();
 
         cubeBool = false;
+
+        isSpacePressed = false;
     }
 
     // Update is called once per frame
@@ -37,7 +44,11 @@ public class ToggleScript : MonoBehaviour
 
     public void TriggerUpdate()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            triggerDoorToggle.SetTrigger("Trigger");
+            Debug.Log("Trigger has been pressed!");
+        }
     }
 
     public void FloatUpdate()
@@ -54,19 +65,6 @@ public class ToggleScript : MonoBehaviour
         if (cubeFloat >= 5)
         {
             cubeFloat = 5;
-        }
-
-        if (cubeFloat <= -2 && Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Debug.Log("Cube is now Yellow!");
-        }
-        else if (cubeFloat >= -1 && cubeFloat <= 1 && Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Debug.Log("Cube is now Green!");
-        }
-        else if (cubeFloat >= 2 && Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Debug.Log("Cube is now Blue!");
         }
     }
     public void BoolUpdate()
